@@ -1,134 +1,146 @@
-/* Import Google Font - Inter */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
 body {
-    font-family: 'Inter', sans-serif; /* Use Inter font */
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: #e0f2f7; /* Lighter, more inviting background */
-    color: #333; /* Default text color */
-    line-height: 1.6;
+    background-color: #fce4ec; /* Light pink background */
 }
 
-.container {
-    background-color: #ffffff;
-    padding: 40px; /* Increased padding */
-    border-radius: 12px; /* More rounded corners */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+.card {
+    background: linear-gradient(135deg, #ffe0b2, #f8bbd0); /* Soft gradient background */
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    padding: 40px;
     text-align: center;
-    max-width: 500px; /* Max width for better readability on large screens */
-    width: 90%; /* Responsive width */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    width: 400px; /* Adjusted width */
+}
+
+.artwork {
+    position: relative;
+    height: 250px; /* Adjusted height */
+    margin-bottom: 30px;
+}
+
+/* Detailed Cake Styling */
+.cake {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px; /* Larger cake */
+    height: 120px; /* Larger cake */
+    background: linear-gradient(to bottom, #ffe0b2, #f3d19f); /* Gradient cake */
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cake .layer {
+    width: 100%;
+    height: 30px;
+    background-color: #f8bbd0; /* Pink layer */
+    position: absolute;
+    box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cake .top { bottom: 90px; }
+.cake .middle { bottom: 60px; background-color: #e1bee7; } /* Purple layer */
+.cake .bottom { bottom: 30px; }
+
+.cake .candle {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 30px;
+    background-color: #ffcdd2; /* Light red candle */
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.cake .candle::before { /* Flame */
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 10px;
+    height: 15px;
+    background-color: #ffea00; /* Yellow flame */
+    border-radius: 50% 50% 0 0;
+    animation: flame 1.5s infinite ease-in-out;
+}
+
+@keyframes flame {
+    0% { transform: translateX(-50%) translateY(0) scaleY(1); opacity: 1; }
+    50% { transform: translateX(-50%) translateY(-5px) scaleY(1.1); opacity: 0.8; }
+    100% { transform: translateX(-50%) translateY(0) scaleY(1); opacity: 1; }
+}
+
+/* Detailed Flower Styling */
+.flowers {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    animation: bloom 5s infinite alternate; /* Flower animation */
+}
+
+@keyframes bloom {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+}
+
+.flower {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.flower.one { background-color: #ffab91; } /* Light orange */
+.flower.two { background-color: #b3e5fc; } /* Light blue */
+.flower.three { background-color: #c8e6c9; } /* Light green */
+
+.flower::before { /* Petals */
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 15px;
+    height: 15px;
+    background-color: inherit;
+    border-radius: 50%;
+}
+
+.flower.one::before { transform: translate(-50%, -50%) rotate(45deg); }
+.flower.two::before { transform: translate(-50%, -50%) rotate(90deg); }
+.flower.three::before { transform: translate(-50%, -50%) rotate(135deg); }
+
+.message {
+    margin-top: 30px;
 }
 
 h1 {
-    margin-bottom: 25px; /* Increased margin */
-    color: #1a237e; /* Darker, more professional blue for heading */
-    font-size: 2.2em; /* Slightly larger heading */
-    font-weight: 700; /* Bolder font weight */
+    color: #d81b60; /* Pink heading */
+    margin-bottom: 15px;
+    font-size: 2.5em; /* Larger heading */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Text shadow */
 }
 
-.controls {
-    display: flex;
-    flex-direction: column; /* Stack controls vertically on small screens */
-    gap: 20px;
-    margin-bottom: 30px; /* Increased margin */
-    justify-content: center;
-    align-items: center; /* Center items when stacked */
+p {
+    color: #757575;
+    margin-bottom: 8px;
+    font-size: 1.2em; /* Larger text */
 }
 
-@media (min-width: 600px) {
-    .controls {
-        flex-direction: row; /* Side-by-side on larger screens */
-    }
-}
-
-.select-group {
-    display: flex;
-    flex-direction: column;
-    width: 100%; /* Take full width in column layout */
-    max-width: 220px; /* Max width for select groups */
-}
-
-label {
-    margin-bottom: 8px; /* Increased margin */
-    color: #4a4a4a; /* Slightly darker label color */
-    font-weight: 500; /* Medium font weight */
-    text-align: left; /* Align label text to the left */
-}
-
-select {
-    padding: 12px; /* More padding for a larger touch target */
-    border: 1px solid #c5d0e6; /* Softer border color */
-    border-radius: 8px; /* Rounded corners for select */
-    background-color: #f8faff; /* Light background for select */
-    font-size: 1em;
-    color: #333;
-    appearance: none; /* Remove default select arrow */
-    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13.2-6.4H18.6c-5%200-9.3%201.8-13.2%205.5s-6.4%208.2-6.4%2013.2c0%204.9%201.8%209.1%205.5%2013.2L137%20228.7c3.9%203.9%208.7%205.8%2013.2%205.8s9.3-1.9%2013.2-5.8L287%2096.1c3.9-3.9%205.8-8.7%205.8-13.2%200-5-1.8-9.3-5.8-13.5z%22%2F%3E%3C%2Fsvg%3E'); /* Custom arrow */
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    background-size: 12px;
-    cursor: pointer;
-}
-
-select:focus {
-    outline: none;
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-}
-
-button {
-    padding: 14px 25px; /* Larger button */
-    background: linear-gradient(145deg, #007bff, #0056b3); /* Gradient background */
-    color: white;
-    border: none;
-    border-radius: 8px; /* More rounded corners */
-    cursor: pointer;
-    font-size: 1.1em; /* Slightly larger font */
-    font-weight: 600; /* Bolder text */
-    transition: all 0.3s ease; /* Smooth transition for all properties */
-    margin-bottom: 25px;
-    box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); /* Button shadow */
-    letter-spacing: 0.5px; /* Slight letter spacing */
-}
-
-button:hover {
-    background: linear-gradient(145deg, #0056b3, #003f7f); /* Darker gradient on hover */
-    transform: translateY(-2px); /* Slight lift effect */
-    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4); /* More prominent shadow on hover */
-}
-
-button:disabled {
-    background: #cccccc;
-    cursor: not-allowed;
-    box-shadow: none;
-    transform: none;
-}
-
-.output {
-    margin-top: 25px; /* Increased margin */
-    text-align: left;
-    padding: 20px; /* More padding */
-    border: 1px solid #e0e0e0; /* Softer border */
-    border-radius: 8px; /* Rounded corners */
-    background-color: #fcfcfc; /* Lighter background */
-    min-height: 80px; /* Minimum height for output area */
-    display: flex;
-    flex-direction: column;
-    gap: 10px; /* Space between paragraphs */
-}
-
-.output p {
-    margin: 0; /* Remove default paragraph margin */
-    color: #444;
-}
-
-#spokenText, #translatedText {
-    font-weight: 600; /* Bolder font weight */
-    color: #007bff; /* Consistent blue color */
-    word-wrap: break-word; /* Ensure long words wrap */
+.from {
+    font-style: italic;
+    text-align: right;
+    margin-top: 20px;
+    font-size: 1.1em;
 }
