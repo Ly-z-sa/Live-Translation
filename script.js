@@ -68,17 +68,17 @@ if (recognition) {
         startButton.disabled = false;
     };
 
-    async function translateText(text, sourceLang, targetLang) {
-    const apiKey = '98db5dc9-a4aa-48d1-88e0-17e86c183213:fx'; // Replace with your DeepL API key
-    const baseURL = 'https://api-free.deepl.com/v2/translate'; // For the free API
+    async function translateText(text, sourcelang, targetlang) {
+    const apiKey = '98db5dc9-a4aa-48d1-88e0-17e86c183213:fx'; // Replace with your ACTUAL DeepL API key
+    const baseURL = 'https://api-free.deepl.com/v2'; // For the free API
     // If you have a Pro account, use: 'https://api.deepl.com/v2';
     const url = `${baseURL}/translate`;
 
     const params = new URLSearchParams();
     params.append('text', text);
-    params.append('target_lang', targetLang);
-    if (sourceLang) {
-        params.append('source_lang', sourceLang);
+    params.append('target_lang', targetlang);
+    if (sourcelang) {
+        params.append('source_lang', sourcelang);
     }
     params.append('auth_key', apiKey);
 
@@ -103,5 +103,4 @@ if (recognition) {
         console.error("Fetch error:", error);
         throw new Error("Translation failed due to a network error.");
     }
-}
 }
