@@ -69,6 +69,24 @@ body {
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* ... other CSS rules ... */
+
+.confetti {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 10;
+    top: -10%;
+    animation: fall 5s linear infinite;
+    opacity: 0;
+}
+
+@keyframes fall {
+    0% { top: -10%; opacity: 1; transform: translateX(0) rotate(0deg); }
+    100% { top: 110%; opacity: 0; transform: translateX(Math.random() * 200 - 100 + 'px') rotate(360deg); }
+}
+
 .cake .candle::before { /* Flame */
     content: '';
     position: absolute;
