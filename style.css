@@ -15,38 +15,8 @@ body {
     padding: 40px;
     text-align: center;
     width: 450px; /* Slightly wider card */
-    position: relative; /* For floral frame positioning */
+    position: relative;
     overflow: hidden;
-}
-
-/* Floral Frame */
-.floral-frame::before,
-.floral-frame::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    border-radius: inherit;
-    z-index: 1; /* Behind the card content */
-}
-
-.floral-frame::before {
-    background: url('floral-frame-top.jpeg') repeat; /* Replace with your top floral image */
-    opacity: 0.3;
-}
-
-.floral-frame::after {
-    background: url('floral-frame-bottom.jpeg') repeat; /* Replace with your bottom floral image */
-    opacity: 0.3;
-    transform: rotate(180deg);
-}
-
-.card > * {
-    position: relative; /* Bring content above the frame */
-    z-index: 2;
 }
 
 .artwork {
@@ -55,57 +25,43 @@ body {
     margin-bottom: 30px;
 }
 
-/* More Detailed Cake */
+/* Basic Cake */
 .cake {
     position: absolute;
     bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 140px;
-    height: 140px;
-    background: linear-gradient(to bottom, #f8bbd0, #fdd8e6);
-    border-radius: 10px;
-    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+    width: 100px;
+    height: 100px;
+    background-color: #f8bbd0;
+    border-radius: 10px 10px 0 0;
 }
 
 .cake .layer {
     width: 100%;
-    height: 35px;
+    height: 30px;
     position: absolute;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .cake .bottom { bottom: 0; background-color: #ffe0b2; border-radius: 10px 10px 0 0; }
-.cake .middle { bottom: 35px; background-color: #e1bee7; }
-.cake .top { bottom: 70px; background-color: #f8bbd0; }
-.cake .top::before { /* Frosting swirl */
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: 10px;
-    width: calc(100% - 20px);
-    height: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
+.cake .middle { bottom: 30px; background-color: #e1bee7; }
+.cake .top { bottom: 60px; background-color: #f8bbd0; }
 
 .cake .candle {
     position: absolute;
-    top: -40px;
+    top: -20px;
     left: 50%;
     transform: translateX(-50%);
-    width: 6px;
-    height: 30px;
+    width: 5px;
+    height: 20px;
     background-color: #ffcdd2;
     border-radius: 3px 3px 0 0;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .cake .candle::before { /* Flame */
     content: '';
     position: absolute;
-    top: -12px;
+    top: -10px;
     left: 50%;
     transform: translateX(-50%);
     width: 8px;
@@ -120,22 +76,6 @@ body {
     50% { transform: translateX(-50%) translateY(-3px) scaleY(1.1); opacity: 0.8; }
     100% { transform: translateX(-50%) translateY(0) scaleY(1); opacity: 1; }
 }
-
-/* Flowers around the cake */
-.flower-decoration {
-    position: absolute;
-    /* Adjust these values to place flowers nicely */
-    /* Example: */
-    top: 10px;
-    left: 10px;
-    width: 50px;
-    height: 50px;
-    background-color: #f48fb1;
-    border-radius: 50%;
-    opacity: 0.6;
-}
-.flower-decoration.two { top: auto; bottom: 20px; right: 20px; background-color: #81d4fa; }
-.flower-decoration.three { top: 30px; right: 50px; width: 40px; height: 40px; background-color: #a5d6a7; }
 
 .message {
     margin-top: 30px;
@@ -167,43 +107,4 @@ p {
 @keyframes fadeIn {
     0% { opacity: 0; transform: translateY(10px); }
     100% { opacity: 1; transform: translateY(0); }
-}
-
-/* Subtle Animated Element (Heart) */
-.heart {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 20px;
-    height: 20px;
-    background-color: #f44336;
-    border-radius: 50%;
-    transform: rotate(45deg);
-    animation: pulse 2s infinite alternate;
-    opacity: 0.7;
-}
-
-.heart::before,
-.heart::after {
-    content: '';
-    width: 20px;
-    height: 20px;
-    background-color: #f44336;
-    border-radius: 50%;
-    position: absolute;
-}
-
-.heart::before {
-    top: -10px;
-    left: 0;
-}
-
-.heart::after {
-    left: 10px;
-    top: 0;
-}
-
-@keyframes pulse {
-    0% { transform: rotate(45deg) scale(1); opacity: 0.7; }
-    100% { transform: rotate(45deg) scale(1.1); opacity: 0.9; }
 }
