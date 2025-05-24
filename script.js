@@ -82,6 +82,8 @@ if (recognition) {
     }
     params.append('auth_key', apiKey);
 
+    console.log("Translating...");
+
     try {
         const response = await fetch(url, {
             method: 'POST',
