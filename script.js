@@ -69,18 +69,39 @@ if (recognition) {
     };
 
     async function translateText(text, sourceLang, targetLang) {
-        // Replace with your actual translation API call
-        // This is a placeholder using a free API (may have limitations)
-        const apiKey = 'YOUR_TRANSLATION_API_KEY'; // Replace with your API key if needed
-        const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${sourceLang}|${targetLang}`;
+    const apiKey = '2247fc16-dc57-4e50-82fd-926ba1b4afe5:fx'; // Replace with your DeepL API key
+    const baseURL = 'https://api-free.deepl.com/v2'; // For the free API
+    // If you have a Pro account, use: 'https://api.deepl.com/v2';
+    const url = `${baseURL}/translate`;
 
-        const response = await fetch(url);
+    const params = new URLSearchParams();
+    params.append('text', text);
+    params.append('target_lang', targetLang);
+    if (sourceLang) {
+        params.append('source_lang', sourceLang);
+    }
+    params.append('auth_key', apiKey);
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: params.toString(),
+        });
+
         const data = await response.json();
 
-        if (data.responseStatus === 200) {
-            return data.responseData.translatedText;
+        if (response.ok) {
+            return data.translations[0].text;
         } else {
-            throw new Error(`Translation API error: ${data.responseDetails}`);
+            console.error("DeepL API error:", data);
+            throw new Error(`DeepL API error: ${data.message || response.statusText}`);
         }
+    } catch (error) {
+        console.error("Fetch error:", error);
+        throw new Error("Translation failed due to a network error.");
     }
+}
 }
