@@ -3,34 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Translator</title>
+    <title>Happy Birthday!</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Live Translator</h1>
-        <div class="controls">
-            <div class="select-group">
-                <label for="sourceLang">What language do you speak?</label>
-                <select id="sourceLang">
-                    <option value="US" selected>English</option>
-                    <option value="ES">Spanish</option>
-                    <option value="FR">French</option>
-                    </select>
+    <div class="card">
+        <div class="artwork">
+            <div class="cake">
+                <div class="layer top"></div>
+                <div class="layer middle"></div>
+                <div class="layer bottom"></div>
+                <div class="candle"></div>
             </div>
-            <div class="select-group">
-                <label for="targetLang">What language do you want to hear?</label>
-                <select id="targetLang">
-                    <option value="JA">Japanese</option>
-                    <option value="DE">German</option>
-                    <option value="CN">Chinese</option>
-                </select>
+            <div class="flowers">
+                <div class="flower one"></div>
+                <div class="flower two"></div>
+                <div class="flower three"></div>
             </div>
         </div>
-        <button id="startButton">Start Listening...</button>
-        <div class="output">
-            <p>You said: <span id="spokenText"></span></p>
-            <p>Translation: <span id="translatedText"></span></p>
+        <div class="message">
+            <h1>Happy Birthday!</h1>
+            <p>Wishing you a day filled with joy, laughter, and everything you love!</p>
+            <p class="from">From, You</p>
         </div>
     </div>
     <script src="script.js"></script>
