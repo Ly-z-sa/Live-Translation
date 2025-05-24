@@ -1,4 +1,5 @@
 const cake = document.querySelector('.cake');
+const flowers = document.querySelector('.flowers');
 
 if (cake) {
     cake.addEventListener('mouseover', () => {
@@ -12,7 +13,6 @@ if (cake) {
     });
 }
 
-const flowers = document.querySelector('.flowers');
 if (flowers) {
-    flowers.style.transform = 'rotate(-5deg)';
+    // The flower animation is now controlled entirely by CSS
 }
