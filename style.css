@@ -34,12 +34,12 @@ body {
 }
 
 .floral-frame::before {
-    background: url('floral-frame-top.png') repeat; /* Replace with your top floral image */
+    background: url('floral-frame-top.jpeg') repeat; /* Replace with your top floral image */
     opacity: 0.3;
 }
 
 .floral-frame::after {
-    background: url('floral-frame-bottom.png') repeat; /* Replace with your bottom floral image */
+    background: url('floral-frame-bottom.jpeg') repeat; /* Replace with your bottom floral image */
     opacity: 0.3;
     transform: rotate(180deg);
 }
