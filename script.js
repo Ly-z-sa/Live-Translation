@@ -1,49 +1,86 @@
-const startBtn = document.getElementById("startBtn");
-const originalDiv = document.getElementById("original");
-const translatedDiv = document.getElementById("translated");
-const inputLang = document.getElementById("inputLang");
-const outputLang = document.getElementById("outputLang");
+const sourceLangSelect = document.getElementById('sourceLang');
+const targetLangSelect = document.getElementById('targetLang');
+const startButton = document.getElementById('startButton');
+const spokenTextElement = document.getElementById('spokenText');
+const translatedTextElement = document.getElementById('translatedText');
 
-const synth = window.speechSynthesis;
+let recognition;
 
-startBtn.addEventListener("click", () => {
-  const inputLanguage = inputLang.value;
-  const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-  recognition.lang = inputLanguage;
-
-  recognition.start();
-
-  recognition.onresult = async (event) => {
-    const transcript = event.results[0][0].transcript;
-    originalDiv.textContent = `🗣️ You said: ${transcript}`;
-
-    const source = inputLang.value;
-    const target = outputLang.value;
-
-    const translated = await translateText(transcript, source, target);
-    translatedDiv.textContent = `🌐 Translation: ${translated}`;
-
-    speakText(translated, target);
-  };
-});
-
-async function translateText(text, sourceLang, targetLang) {
-  const response = await fetch("https://libretranslate.de/translate", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      q: text,
-      source: sourceLang,
-      target: targetLang,
-      format: "text"
-    })
-  });
-  const data = await response.json();
-  return data.translatedText;
+if ('webkitSpeechRecognition' in window) {
+    recognition = new webkitSpeechRecognition();
+} else if ('speechRecognition' in window) {
+    recognition = new SpeechRecognition();
+} else {
+    alert("Your browser doesn't support the Web Speech API. Try using Chrome.");
 }
 
-function speakText(text, lang) {
-  const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = lang;
-  synth.speak(utterance);
+if (recognition) {
+    recognition.continuous = true;
+    recognition.interimResults = true;
+
+    startButton.addEventListener('click', () => {
+        spokenTextElement.textContent = '';
+        translatedTextElement.textContent = '';
+        recognition.lang = sourceLangSelect.value;
+        recognition.start();
+        startButton.textContent = 'Listening...';
+        startButton.disabled = true;
+    });
+
+    recognition.onresult = async (event) => {
+        let finalTranscript = '';
+        let interimTranscript = '';
+
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+                finalTranscript += event.results[i][0].transcript;
+            } else {
+                interimTranscript += event.results[i][0].transcript;
+            }
+        }
+
+        spokenTextElement.textContent = finalTranscript || interimTranscript;
+
+        if (finalTranscript) {
+            // Call your translation function here
+            const sourceText = finalTranscript;
+            const targetLangCode = targetLangSelect.value.split('-')[0]; // Get the base language code
+
+            try {
+                const translated = await translateText(sourceText, sourceLangSelect.value.split('-')[0], targetLangCode);
+                translatedTextElement.textContent = translated;
+            } catch (error) {
+                console.error("Translation error:", error);
+                translatedTextElement.textContent = "Translation failed.";
+            }
+        }
+    };
+
+    recognition.onerror = (event) => {
+        console.error('Speech recognition error:', event.error);
+        spokenTextElement.textContent = `Error: ${event.error}`;
+        startButton.textContent = 'Start Listening...';
+        startButton.disabled = false;
+    };
+
+    recognition.onend = () => {
+        startButton.textContent = 'Start Listening...';
+        startButton.disabled = false;
+    };
+
+    async function translateText(text, sourceLang, targetLang) {
+        // Replace with your actual translation API call
+        // This is a placeholder using a free API (may have limitations)
+        const apiKey = 'YOUR_TRANSLATION_API_KEY'; // Replace with your API key if needed
+        const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${sourceLang}|${targetLang}`;
+
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.responseStatus === 200) {
+            return data.responseData.translatedText;
+        } else {
+            throw new Error(`Translation API error: ${data.responseDetails}`);
+        }
+    }
 }
