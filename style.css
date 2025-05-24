@@ -1,20 +1,29 @@
 body {
-    font-family: 'Lobster', cursive;
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: #fce4ec; /* Light pink background */
+    background-color: #fce4ec; /* Light pink base */
+    background-image: url('floral-pattern.jpg'); /* We'll need this image */
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .card {
-    background: linear-gradient(135deg, #ffe0b2, #f8bbd0); /* Soft gradient background */
+    background: linear-gradient(135deg, #ffe0b2cc, #f8bbd0cc); /* Soft gradient with transparency */
     border-radius: 20px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     padding: 40px;
     text-align: center;
     width: 400px; /* Adjusted width */
+    transition: transform 0.3s ease-in-out; /* For hover effect */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
 .artwork {
@@ -79,11 +88,11 @@ body {
     100% { transform: translateX(-50%) translateY(0) scaleY(1); opacity: 1; }
 }
 
-/* Detailed Flower Styling */
+/* Basic Flower Styling on the Cake */
 .flowers {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 10px;
+    left: 10px;
     display: flex;
     animation: bloom 5s infinite alternate, sway 3s infinite alternate; /* Combined animations */
 }
@@ -100,10 +109,10 @@ body {
 }
 
 .flower {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
-    margin-right: 15px;
+    margin-right: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -117,8 +126,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     background-color: inherit;
     border-radius: 50%;
 }
@@ -138,6 +147,7 @@ h1 {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Text shadow */
     opacity: 0; /* Initially hidden for fade-in */
     animation: fadeIn 2s ease-in-out forwards; /* Apply fade-in animation */
+    font-family: 'Lobster', cursive;
 }
 
 p {
