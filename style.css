@@ -1,0 +1,19 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 2rem;
+  background-color: #f6f8fa;
+  text-align: center;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#original, #translated {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  color: #333;
+}
