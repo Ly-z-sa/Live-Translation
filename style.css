@@ -5,173 +5,156 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background-color: #fce4ec; /* Light pink base */
-    background-image: url('floral-pattern.jpg'); /* We'll need this image */
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-color: #fde9f2; /* Soft background */
 }
 
 .card {
-    background: linear-gradient(135deg, #ffe0b2cc, #f8bbd0cc); /* Soft gradient with transparency */
+    background: linear-gradient(135deg, #fffafa, #f0f8ff); /* Very light gradient */
     border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
     padding: 40px;
     text-align: center;
-    width: 400px; /* Adjusted width */
-    transition: transform 0.3s ease-in-out; /* For hover effect */
+    width: 450px; /* Slightly wider card */
+    position: relative; /* For floral frame positioning */
+    overflow: hidden;
 }
 
-.card:hover {
-    transform: scale(1.05); /* Slight zoom on hover */
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+/* Floral Frame */
+.floral-frame::before,
+.floral-frame::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 1; /* Behind the card content */
+}
+
+.floral-frame::before {
+    background: url('floral-frame-top.png') repeat; /* Replace with your top floral image */
+    opacity: 0.3;
+}
+
+.floral-frame::after {
+    background: url('floral-frame-bottom.png') repeat; /* Replace with your bottom floral image */
+    opacity: 0.3;
+    transform: rotate(180deg);
+}
+
+.card > * {
+    position: relative; /* Bring content above the frame */
+    z-index: 2;
 }
 
 .artwork {
     position: relative;
-    height: 250px; /* Adjusted height */
+    height: 280px; /* Increased artwork height */
     margin-bottom: 30px;
 }
 
-/* Detailed Cake Styling */
+/* More Detailed Cake */
 .cake {
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
-    width: 120px; /* Larger cake */
-    height: 120px; /* Larger cake */
-    background: linear-gradient(to bottom, #ffe0b2, #f3d19f); /* Gradient cake */
-    border-radius: 15px 15px 0 0;
-    box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+    width: 140px;
+    height: 140px;
+    background: linear-gradient(to bottom, #f8bbd0, #fdd8e6);
+    border-radius: 10px;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .cake .layer {
     width: 100%;
-    height: 30px;
-    background-color: #f8bbd0; /* Pink layer */
+    height: 35px;
     position: absolute;
-    box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
 }
 
-.cake .top { bottom: 90px; }
-.cake .middle { bottom: 60px; background-color: #e1bee7; } /* Purple layer */
-.cake .bottom { bottom: 30px; }
+.cake .bottom { bottom: 0; background-color: #ffe0b2; border-radius: 10px 10px 0 0; }
+.cake .middle { bottom: 35px; background-color: #e1bee7; }
+.cake .top { bottom: 70px; background-color: #f8bbd0; }
+.cake .top::before { /* Frosting swirl */
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    width: calc(100% - 20px);
+    height: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
 
 .cake .candle {
     position: absolute;
-    top: -30px;
+    top: -40px;
     left: 50%;
     transform: translateX(-50%);
-    width: 8px;
+    width: 6px;
     height: 30px;
-    background-color: #ffcdd2; /* Light red candle */
-    border-radius: 5px 5px 0 0;
+    background-color: #ffcdd2;
+    border-radius: 3px 3px 0 0;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* ... other CSS rules ... */
-
-.confetti {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    position: absolute;
-    z-index: 10;
-    top: -10%;
-    animation: fall 5s linear infinite;
-    opacity: 0;
-}
-
-@keyframes fall {
-    0% { top: -10%; opacity: 1; transform: translateX(0) rotate(0deg); }
-    100% { top: 110%; opacity: 0; transform: translateX(Math.random() * 200 - 100 + 'px') rotate(360deg); }
 }
 
 .cake .candle::before { /* Flame */
     content: '';
     position: absolute;
-    top: -10px;
+    top: -12px;
     left: 50%;
     transform: translateX(-50%);
-    width: 10px;
-    height: 15px;
-    background-color: #ffea00; /* Yellow flame */
+    width: 8px;
+    height: 12px;
+    background-color: #ffea00;
     border-radius: 50% 50% 0 0;
     animation: flame 1.5s infinite ease-in-out;
 }
 
 @keyframes flame {
     0% { transform: translateX(-50%) translateY(0) scaleY(1); opacity: 1; }
-    50% { transform: translateX(-50%) translateY(-5px) scaleY(1.1); opacity: 0.8; }
+    50% { transform: translateX(-50%) translateY(-3px) scaleY(1.1); opacity: 0.8; }
     100% { transform: translateX(-50%) translateY(0) scaleY(1); opacity: 1; }
 }
 
-/* Basic Flower Styling on the Cake */
-.flowers {
+/* Flowers around the cake */
+.flower-decoration {
     position: absolute;
+    /* Adjust these values to place flowers nicely */
+    /* Example: */
     top: 10px;
     left: 10px;
-    display: flex;
-    animation: bloom 5s infinite alternate, sway 3s infinite alternate; /* Combined animations */
-}
-
-@keyframes bloom {
-    0% { transform: rotate(-5deg); }
-    100% { transform: rotate(5deg); }
-}
-
-@keyframes sway {
-    0% { transform: translateX(0); }
-    50% { transform: translateX(5px); }
-    100% { transform: translateX(0); }
-}
-
-.flower {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: #f48fb1;
     border-radius: 50%;
-    margin-right: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    opacity: 0.6;
 }
-
-.flower.one { background-color: #ffab91; } /* Light orange */
-.flower.two { background-color: #b3e5fc; } /* Light blue */
-.flower.three { background-color: #c8e6c9; } /* Light green */
-
-.flower::before { /* Petals */
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 12px;
-    height: 12px;
-    background-color: inherit;
-    border-radius: 50%;
-}
-
-.flower.one::before { transform: translate(-50%, -50%) rotate(45deg); }
-.flower.two::before { transform: translate(-50%, -50%) rotate(90deg); }
-.flower.three::before { transform: translate(-50%, -50%) rotate(135deg); }
+.flower-decoration.two { top: auto; bottom: 20px; right: 20px; background-color: #81d4fa; }
+.flower-decoration.three { top: 30px; right: 50px; width: 40px; height: 40px; background-color: #a5d6a7; }
 
 .message {
     margin-top: 30px;
 }
 
 h1 {
-    color: #d81b60; /* Pink heading */
+    color: #d81b60;
     margin-bottom: 15px;
-    font-size: 2.5em; /* Larger heading */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Text shadow */
-    opacity: 0; /* Initially hidden for fade-in */
-    animation: fadeIn 2s ease-in-out forwards; /* Apply fade-in animation */
+    font-size: 3em; /* Larger heading */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
     font-family: 'Lobster', cursive;
+    animation: fadeIn 2s ease-in-out forwards;
+    opacity: 0;
 }
 
 p {
     color: #757575;
     margin-bottom: 8px;
-    font-size: 1.2em; /* Larger text */
+    font-size: 1.2em;
 }
 
 .from {
@@ -184,4 +167,43 @@ p {
 @keyframes fadeIn {
     0% { opacity: 0; transform: translateY(10px); }
     100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Subtle Animated Element (Heart) */
+.heart {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 20px;
+    height: 20px;
+    background-color: #f44336;
+    border-radius: 50%;
+    transform: rotate(45deg);
+    animation: pulse 2s infinite alternate;
+    opacity: 0.7;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color: #f44336;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart::before {
+    top: -10px;
+    left: 0;
+}
+
+.heart::after {
+    left: 10px;
+    top: 0;
+}
+
+@keyframes pulse {
+    0% { transform: rotate(45deg) scale(1); opacity: 0.7; }
+    100% { transform: rotate(45deg) scale(1.1); opacity: 0.9; }
 }
