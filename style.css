@@ -1,5 +1,5 @@
 body {
-    font-family: 'Lobster', cursive;
+    font-family: 'Arial', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -85,12 +85,18 @@ body {
     top: 20px;
     left: 20px;
     display: flex;
-    animation: bloom 5s infinite alternate; /* Flower animation */
+    animation: bloom 5s infinite alternate, sway 3s infinite alternate; /* Combined animations */
 }
 
 @keyframes bloom {
     0% { transform: rotate(-5deg); }
     100% { transform: rotate(5deg); }
+}
+
+@keyframes sway {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+    100% { transform: translateX(0); }
 }
 
 .flower {
@@ -130,6 +136,8 @@ h1 {
     margin-bottom: 15px;
     font-size: 2.5em; /* Larger heading */
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Text shadow */
+    opacity: 0; /* Initially hidden for fade-in */
+    animation: fadeIn 2s ease-in-out forwards; /* Apply fade-in animation */
 }
 
 p {
@@ -143,4 +151,9 @@ p {
     text-align: right;
     margin-top: 20px;
     font-size: 1.1em;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
