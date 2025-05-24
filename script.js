@@ -69,8 +69,8 @@ if (recognition) {
     };
 
     async function translateText(text, sourceLang, targetLang) {
-    const apiKey = '2247fc16-dc57-4e50-82fd-926ba1b4afe5:fx'; // Replace with your DeepL API key
-    const baseURL = 'https://api.deepl.com/v2/translate'; // For the free API
+    const apiKey = '98db5dc9-a4aa-48d1-88e0-17e86c183213:fx'; // Replace with your DeepL API key
+    const baseURL = 'https://api-free.deepl.com/v2/translate'; // For the free API
     // If you have a Pro account, use: 'https://api.deepl.com/v2';
     const url = `${baseURL}/translate`;
 
